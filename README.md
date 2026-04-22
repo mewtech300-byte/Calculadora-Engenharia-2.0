@@ -3,7 +3,7 @@
 Este projeto faz parte da minha transição de carreira para a área de Tecnologia e Dados. É uma ferramenta desenvolvida em Python para automatizar cálculos complexos utilizados na engenharia.
 
 ## Status do Projeto: Dia 2 (Lógica e Funcionalidades)
-- Foi implementado a inteligência por trás da interface gráfica, focando em manipulação de eventos e cálculos dinâmicos:
+Concluída implementado a inteligência por trás da interface gráfica, focando em manipulação de eventos e cálculos dinâmicos:
 - **Integração de Comandos**: Conexão entre a interface (Tkinter) e as funções de cálculo utilizando funções lambda para gerenciamento de eventos.
 - **Tratamento de Erros**: Implementação de blocos try/except para capturar exceções matemáticas (como divisão por zero), evitando o fechamento inesperado do software.
 - **Implementação Científica**:
