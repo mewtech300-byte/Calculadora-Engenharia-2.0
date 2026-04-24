@@ -3,7 +3,7 @@
 Este projeto faz parte da minha transição de carreira para a área de Tecnologia e Dados. É uma ferramenta desenvolvida em Python para automatizar cálculos complexos utilizados na engenharia.
 
 
-### Status do Projeto:  dia 3 (Estabilização Matemática e UI Personalizada)
+### Status do Projeto:  dia 3 e 4  (Estabilização Matemática e UI Personalizada)
  O projeto avançou para uma fase crítica de funcionalidades avançadas e refinamento visual. O foco foi garantir que a calculadora não apenas processe operações básicas, mas também resolva problemas complexos de engenharia de forma simbólica.
  O que foi implementado:
 - **Cálculo Simbólico Integrado**: Suporte para Derivadas e Integrais utilizando a biblioteca (Sympy)
