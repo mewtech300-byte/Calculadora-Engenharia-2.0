@@ -2,7 +2,19 @@
 
 Este projeto faz parte da minha transição de carreira para a área de Tecnologia e Dados. É uma ferramenta desenvolvida em Python para automatizar cálculos complexos utilizados na engenharia.
 
-## Status do Projeto: Dia 2 (Lógica e Funcionalidades)
+
+### Status do Projeto:  dia 3 (Estabilização Matemática e UI Personalizada)
+ O projeto avançou para uma fase crítica de funcionalidades avançadas e refinamento visual. O foco foi garantir que a calculadora não apenas processe operações básicas, mas também resolva problemas complexos de engenharia de forma simbólica.
+ O que foi implementado:
+- **Cálculo Simbólico Integrado**: Suporte para Derivadas e Integrais utilizando a biblioteca (Sympy)
+- **Funções Avançadas**: Implementação de Logaritmos, funções trigonométricas, fatoriais e constantes como π.
+- **Lógica de Potenciação e Raízes**: Suporte para x ao quadrado, ao cubo, dez elevado a variavel (x).
+- **Refatoração da UI (Front-end)**: * Interface customizada com tema "Dark Wood" (Marrom amadeirado e visor preto).
+
+  --> Desafios Técnicos e Aprendizados: Correção de Multiplicação; Ajuste na lógica de Regex para diferenciar multiplicação implícita de operações explícitas , evitando resultados exorbitantes.Localização: Adaptação da entrada de dados para o padrão brasileiro (uso de vírgula visual para decimais, mantendo a compatibilidade do ponto flutuante no back-end).
+
+
+##  Projeto: Dia 2 (Lógica e Funcionalidades)
 Implementado a inteligência por trás da interface gráfica, focando em manipulação de eventos e cálculos dinâmicos:
 - **Integração de Comandos**: Conexão entre a interface (Tkinter) e as funções de cálculo utilizando funções lambda para gerenciamento de eventos.
 - **Tratamento de Erros**: Implementação de blocos try/except para capturar exceções matemáticas (como divisão por zero), evitando o fechamento inesperado do software.
