@@ -1,9 +1,20 @@
-# Calculadora de Engenharia 2.0
+# Calculadora de Engenharia 3.0
 
 Este projeto faz parte da minha transição de carreira para a área de Tecnologia e Dados. É uma ferramenta desenvolvida em Python para automatizar cálculos complexos utilizados na engenharia.
 
+### Projeto: Dia 5 ( Dia da finalização)
+No Decorrer do Projeto, me deparei com problemas, como o somatório de uma equação polinomial, no visor apresentava erro ou congelava. Outro erro que dava era em questão do número fatorial o python, estava com dificuldade em entender a exclamação e fazer a conta. 
+Tive problemas com contas exponenciais, que também apresentava erro, assim fui resolvendo aos poucos cada erro.
+O foco do último dia foi a transição da calculadora de um estado funcional para um produto finalizado, com ênfase em UX (Experiência do Usuário) e integridade dos cálculos. testei várias contas para certificar que qualquqer bug foi sanavél. 
+ O que foi implementado a mais:
+- **Novas teclas, como as MC/M-/MR/M+**
+- **Correção de erros e novos BUGS**
+- **Acrescimo de nova tecla de x elevado a y , ou sejava coloquei uma nova variavel**
+- **Refinamento da Interface (UI/UX)**
+-  **Padronização Visual e Hierarquia**
 
-### Status do Projeto:  dia 3 e 4  (Estabilização Matemática e UI Personalizada)
+
+###  Projeto:  dia 3 e 4  (Estabilização Matemática e UI Personalizada)
  O projeto avançou para uma fase crítica de funcionalidades avançadas e refinamento visual. O foco foi garantir que a calculadora não apenas processe operações básicas, mas também resolva problemas complexos de engenharia de forma simbólica.
  O que foi implementado:
 - **Cálculo Simbólico Integrado**: Suporte para Derivadas e Integrais utilizando a biblioteca (Sympy)
