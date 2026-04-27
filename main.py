@@ -21,17 +21,30 @@ def formatar_resultado_visual(resultado_obj):
     except: return str(resultado_obj)
 
 def limpar_para_calcular(texto):
+    # Padronização básica
     texto = texto.replace('X', '*').replace('÷', '/')
     texto = texto.replace(',', '.')
+    
+    # Tratamento de funções e símbolos
     texto = re.sub(r'(\d+)!', r'factorial(\1)', texto)
+    texto = texto.replace('π', 'pi').replace('√(', 'sqrt(').replace('%', '/100')
+    texto = texto.replace('log₁₀(', 'log(').replace('ln(', 'log(')
+
+    # Multiplicação Implícita (Ex: 2x -> 2*x, x(sin) -> x*(sin))
+    texto = re.sub(r'(\d+)([a-zA-Zπ])', r'\1*\2', texto)
+    texto = re.sub(r'([a-zA-Zπ])(\d+)', r'\1*\2', texto)
+    texto = re.sub(r'(\))(\d)', r'\1*\2', texto)
+    texto = re.sub(r'(\))([a-zA-Zπ])', r'\1*\2', texto)
+    texto = re.sub(r'(\d+)(\()', r'\1*\2', texto)
+
+    # Tratamento de expoentes e sobrescritos
     texto = re.sub(r'e([⁰¹²³⁴⁵⁶⁷⁸⁹]+)', lambda m: f"exp({m.group(1).translate(MAPA_NORMAL)})", texto)
     texto = re.sub(r'10([⁰¹²³⁴⁵⁶⁷⁸⁹]+)', lambda m: f"10**({m.group(1).translate(MAPA_NORMAL)})", texto)
     texto = re.sub(r'([0-9x])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)', lambda m: f"{m.group(1)}**{m.group(2).translate(MAPA_NORMAL)}", texto)
-    texto = re.sub(r'(\d)([a-zA-Zπ])', r'\1*\2', texto)
-    texto = re.sub(r'(\))(\d)', r'\1*\2', texto)
+    
     for sobre, normal in zip("⁰¹²³⁴⁵⁶⁷⁸⁹", "0123456789"):
         texto = texto.replace(sobre, f"**{normal}")
-    texto = texto.replace('π', 'pi').replace('ln(', 'log(').replace('√(', 'sqrt(').replace('%', '/100')
+    
     return texto
 
 def obter_valor_atual():
@@ -60,8 +73,17 @@ def acao_botao(texto):
         try:
             parenteses_abertos = atual.count('(') - atual.count(')')
             if parenteses_abertos > 0: atual += ')' * parenteses_abertos
+            
             expr_limpa = limpar_para_calcular(atual)
-            resultado = sp.sympify(expr_limpa).evalf()
+            x = sp.symbols('x')
+            expressao = sp.sympify(expr_limpa)
+            
+            # Se houver 'x', simplifica a equação. Se não, resolve o valor numérico.
+            if 'x' in expr_limpa:
+                resultado = sp.simplify(expressao)
+            else:
+                resultado = expressao.evalf()
+                
             display.delete(0, tk.END)
             display.insert(0, formatar_resultado_visual(resultado))
         except: messagebox.showerror("Erro", "Expressão inválida.")
@@ -122,6 +144,9 @@ def acao_botao(texto):
         modo_expoente = False
         display.insert(tk.END, texto)
 
+    elif texto == "x":
+        display.insert(tk.END, "x")
+
     elif texto == "x²": display.insert(tk.END, "²")
     elif texto == "x³": display.insert(tk.END, "³")
     elif texto == "xʸ": modo_expoente = True
@@ -161,7 +186,6 @@ frame_botoes.pack(fill="both", expand=True, padx=10, pady=10)
 
 modo_expoente = False
 
-# Organizado para 6 linhas completas de 7 colunas antes do botão '='
 botoes = [
     'MC', 'MR', 'M+', 'M-', '(', ')', 'derivar',
     'C', '⌫', '%', '+/-', '÷', 'EXP', 'integrar',
@@ -176,12 +200,11 @@ l, c = 0, 0
 for t in botoes:
     fonte_botao = ("Times New Roman", 11, "bold")
     
-    # Lógica de Cores
     if t in ['MC', 'MR', 'M+', 'M-', 'derivar', 'integrar', 'EXP']:
         cor_bg, cor_fg = COR_VERDE_MUSGO, "white"
     elif t == 'C': 
         cor_bg, cor_fg = "#ceca0a", "black"
-    elif t.isdigit() or t in [',', '⌫', '+/-', '%']: # % aqui com cor de número
+    elif t.isdigit() or t in [',', '⌫', '+/-', '%']:
         cor_bg, cor_fg = "#d3d3d3", "black"
     elif t in ['+', '-', 'X', '÷']: 
         cor_bg, cor_fg = "#d27c13", "white"
@@ -198,15 +221,13 @@ for t in botoes:
         c = 0
         l += 1
 
-# CRIAR O BOTÃO '=' FORA DO LOOP PARA GARANTIR QUE APAREÇA NO FINAL
 btn_igual = tk.Button(frame_botoes, text='=', bg="#831D1B", fg="white", font=("Times New Roman", 14, "bold"), 
                      relief="raised", borderwidth=2, command=lambda: acao_botao('='))
 btn_igual.grid(row=l+1, column=0, columnspan=7, padx=3, pady=3, ipady=12, sticky="nsew")
 
-# --- SIMETRIA ---
 for i in range(7):
     frame_botoes.grid_columnconfigure(i, weight=1, uniform="equal")
-for i in range(l + 2): # Ajustado para incluir a linha do '='
+for i in range(l + 2):
     frame_botoes.grid_rowconfigure(i, weight=1, uniform="equal")
 
 root.mainloop()
