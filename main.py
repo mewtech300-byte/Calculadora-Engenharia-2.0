@@ -172,7 +172,7 @@ def acao_botao(texto):
 
 # --- GUI ---
 root = tk.Tk()
-root.title("Calculadora de Engenharia 2.0")
+root.title("Calculadora de Engenharia 3.0")
 root.geometry("700x850") 
 COR_MADEIRA, COR_VERDE_MUSGO = "#3d2b1f", "#4b5320"
 root.configure(bg=COR_MADEIRA)
